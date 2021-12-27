@@ -1,20 +1,25 @@
 package com.example.androidproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+
+    //Connect to sql server
+    Connection connection;
+    String connectionResult = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,4 +70,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewNew=findViewById(R.id.recyviewNew);
         listView = findViewById(R.id.listviewmanhinhchinh);
     }
+
+
 }

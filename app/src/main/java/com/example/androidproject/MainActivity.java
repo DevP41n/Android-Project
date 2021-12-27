@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AnhXa();
         ActionViewFlipper();
+
     }
 
 
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewNew=findViewById(R.id.recyviewNew);
         listView = findViewById(R.id.listviewmanhinhchinh);
     }
+
 
 
 }

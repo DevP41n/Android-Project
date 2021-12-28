@@ -1,9 +1,12 @@
 package com.example.androidproject;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,7 +33,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewClickInterFace{
     Toolbar toolbar;
     ViewFlipper viewFlipper;
     RecyclerView recyclerViewNew;
@@ -50,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
         ActionViewFlipper();
         LoadData();
 
-
     }
+
+
 
     private void LoadData() {
 
@@ -74,10 +79,11 @@ public class MainActivity extends AppCompatActivity {
                             ,rs.getInt(7),rs.getInt(8), rs.getInt(9)));
                 }
             }
-            adapterSanPham = new adapterSanPham(MainActivity.this, sp);
+            adapterSanPham = new adapterSanPham(MainActivity.this, sp,this);
             LinearLayoutManager llm = new LinearLayoutManager(this);
             llm.setOrientation(LinearLayoutManager.VERTICAL);
             recyclerViewNew.setLayoutManager(llm);
+            recyclerViewNew.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
             recyclerViewNew.setAdapter(adapterSanPham);
 
         } catch (SQLException throwables) {
@@ -117,5 +123,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getApplicationContext(), MainChiTietSanPham.class);
+        intent.putExtra("ProductDetails", sp.get(position));
+        startActivity(intent);
+    }
 }

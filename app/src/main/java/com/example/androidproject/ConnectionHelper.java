@@ -21,6 +21,7 @@ public class ConnectionHelper {
         ip = "192.168.5.157"; // IP máy của Tân
         //ip = "192.168.5.38"; // IP máy của Tiến
 //        ip="172.20.10.12";// IP máy của Chương
+
         database = "TechShop";
         username = "sa";
         pass = "sa";

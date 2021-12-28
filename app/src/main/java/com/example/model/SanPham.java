@@ -1,6 +1,8 @@
 package com.example.model;
 
-public class SanPham {
+import java.io.Serializable;
+
+public class SanPham implements Serializable {
     private int MaSP;
     private String TenSP;
     private Double Gia;

@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     private void loadCategory() {
 
-
+        loaiSanPham = new ArrayList<>();
 //        TextView textt;
 //        textt = findViewById(R.id.textt);
         try{
@@ -83,10 +83,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
                 while (rs.next()){
 //                    textt.setText(rs.getString(2));
                     loaiSanPham.add(new LoaiSanPham( rs.getInt(1),rs.getString(2),rs.getInt(3)));
-                    adapterLoaiSanPham.notifyDataSetChanged();
                 }
             }
-
+            adapterLoaiSanPham = new adapterLoaiSanPham(MainActivity.this,R.layout.layout_toolbar,loaiSanPham);
+            listView.setAdapter(adapterLoaiSanPham);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -168,9 +168,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         recyclerViewNew=findViewById(R.id.rvcviewNew);
         listView = findViewById(R.id.listviewmanhinhchinh);
 
-        loaiSanPham = new ArrayList<>();
-        adapterLoaiSanPham = new adapterLoaiSanPham(loaiSanPham,getApplicationContext());
-        listView.setAdapter(adapterLoaiSanPham);
+
     }
 
 

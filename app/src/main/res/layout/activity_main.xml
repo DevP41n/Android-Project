@@ -37,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/textt"
                     android:textSize="25sp"
                     android:textStyle="bold"
                     android:layout_margin="5dp"
@@ -46,7 +47,7 @@
                     android:layout_height="wrap_content">
                 </TextView>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyviewNew"
+                    android:id="@+id/rvcviewNew"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 </androidx.recyclerview.widget.RecyclerView>

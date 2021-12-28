@@ -1,5 +1,6 @@
 package com.example.androidproject;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -10,9 +11,15 @@ import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.adapter.adapterSanPham;
+import com.example.model.SanPham;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -29,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+    ArrayList<SanPham> sp;
+    adapterSanPham adapterSanPham;
 
     //Connect to sql server
-    Connection connection;
+    Connection connect;
     String connectionResult = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +48,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AnhXa();
         ActionViewFlipper();
+        LoadData();
+
 
     }
+
+    private void LoadData() {
+
+        sp = new ArrayList<>();
+//        TextView textt;
+//        textt = findViewById(R.id.textt);
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionClass();
+            if(connect!= null)
+            {
+                String query ="select * from SanPham";
+                Statement st= connect.createStatement();
+                ResultSet rs= st.executeQuery(query);
+
+                while (rs.next()){
+//                    textt.setText(rs.getString(2));
+                    sp.add(new SanPham(rs.getInt(1) , rs.getString(2), rs.getDouble(3)
+                            , rs.getString(4), rs.getString(5), rs.getString(6)
+                            ,rs.getInt(7),rs.getInt(8), rs.getInt(9)));
+                }
+            }
+            adapterSanPham = new adapterSanPham(MainActivity.this, sp);
+            LinearLayoutManager llm = new LinearLayoutManager(this);
+            llm.setOrientation(LinearLayoutManager.VERTICAL);
+            recyclerViewNew.setLayoutManager(llm);
+            recyclerViewNew.setAdapter(adapterSanPham);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 
 
     private void ActionViewFlipper() {
@@ -68,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         viewFlipper = findViewById(R.id.viewflipper);
         navigationView = findViewById(R.id.navigationview);
         drawerLayout = findViewById(R.id.drawerlayout);
-        recyclerViewNew=findViewById(R.id.recyviewNew);
+        recyclerViewNew=findViewById(R.id.rvcviewNew);
         listView = findViewById(R.id.listviewmanhinhchinh);
     }
 

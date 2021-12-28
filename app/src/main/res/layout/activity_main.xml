@@ -13,7 +13,6 @@
         android:layout_height="match_parent">
 
 
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -24,12 +23,14 @@
                 app:title="Trang Chủ"
                 android:background="#0859DF"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"></androidx.appcompat.widget.Toolbar>
+                android:layout_height="?attr/actionBarSize">
+
+            </androidx.appcompat.widget.Toolbar>
 
             <ViewFlipper
                 android:id="@+id/viewflipper"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"></ViewFlipper>
+                android:layout_height="150dp"/>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -45,11 +46,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </TextView>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvcviewNew"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
 
         </LinearLayout>
@@ -59,16 +60,55 @@
             android:id="@+id/navigationview"
             android:layout_gravity="start"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/listviewThongTin"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"></ListView>
-            <ListView
-                android:id="@+id/listviewmanhinhchinh"
-                android:layout_marginTop="150dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></ListView>
+            android:layout_height="match_parent"
+            >
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="200dp"
+                   android:background="@drawable/background_header"
+                   android:gravity="bottom"
+                   android:padding="20dp"
+                   android:orientation="vertical">
+                   <ImageView
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       android:src="@drawable/laptop_header"/>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/aclonica"
+                       android:text="CKLTT Shop"
+                       android:textSize="18.5sp" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/aclonica"
+                       android:text="www.cklttshopgear.vn"
+                       android:textSize="16sp" />
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Danh Mục Sản Phẩm"
+                       android:textSize="18sp"/>
+
+               </LinearLayout>
+               <ListView
+                   android:id="@+id/listviewmanhinhchinh"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   />
+           </LinearLayout>
+
+
         </com.google.android.material.navigation.NavigationView>
 
 

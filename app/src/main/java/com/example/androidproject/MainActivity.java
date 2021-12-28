@@ -2,6 +2,8 @@ package com.example.androidproject;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -12,13 +14,16 @@ import android.widget.ViewFlipper;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.adapter.adapterLoaiSanPham;
 import com.example.adapter.adapterSanPham;
+import com.example.model.LoaiSanPham;
 import com.example.model.SanPham;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<SanPham> sp;
     adapterSanPham adapterSanPham;
 
+    ArrayList<LoaiSanPham> loaiSanPham;
+    adapterLoaiSanPham adapterLoaiSanPham;
     //Connect to sql server
     Connection connect;
     String connectionResult = "";
@@ -47,10 +54,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AnhXa();
+        ActionBar();
         ActionViewFlipper();
+        loadCategory();
         LoadData();
 
+    }
 
+    private void loadCategory() {
+
+//        TextView textt;
+//        textt = findViewById(R.id.textt);
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionClass();
+            if(connect!= null)
+            {
+                String query ="select * from DanhMuc";
+                Statement st= connect.createStatement();
+                ResultSet rs= st.executeQuery(query);
+
+                while (rs.next()){
+//                    textt.setText(rs.getString(2));
+                    loaiSanPham.add(new LoaiSanPham( rs.getInt(1),rs.getString(2),rs.getInt(3)));
+                    adapterLoaiSanPham.notifyDataSetChanged();
+                }
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    private void ActionBar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
     }
 
     private void LoadData() {
@@ -114,6 +160,10 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerlayout);
         recyclerViewNew=findViewById(R.id.rvcviewNew);
         listView = findViewById(R.id.listviewmanhinhchinh);
+
+        loaiSanPham = new ArrayList<>();
+        adapterLoaiSanPham = new adapterLoaiSanPham(loaiSanPham,getApplicationContext());
+        listView.setAdapter(adapterLoaiSanPham);
     }
 
 

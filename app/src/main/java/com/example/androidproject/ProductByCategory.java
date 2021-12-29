@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.Toolbar;
 
 import com.example.adapter.adapterLoaiSanPham;
 import com.example.adapter.adapterSanPham;
@@ -22,6 +23,7 @@ public class ProductByCategory extends AppCompatActivity {
     ListView lsvByCategory;
     ArrayList<SanPham> sp;
     adapterSpTheoDanhMuc adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,5 +65,6 @@ public class ProductByCategory extends AppCompatActivity {
 
     private void linkViews() {
         lsvByCategory = findViewById(R.id.lsvByCategory);
+
     }
 }

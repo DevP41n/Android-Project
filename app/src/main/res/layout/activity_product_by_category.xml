@@ -6,7 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ProductByCategory"
     android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarproduct_by_category"
+        app:title="san pham"
+        android:background="#0859DF"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
 
+    </androidx.appcompat.widget.Toolbar>
     <ListView
         android:id="@+id/lsvByCategory"
         android:layout_width="match_parent"

@@ -5,12 +5,12 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/invThumble"
+        android:id="@+id/imvAnhSp"
         android:layout_width="144dp"
         android:layout_height="100dp">
     </ImageView>
     <TextView
-        android:id="@+id/txtinfo"
+        android:id="@+id/txtThongTinSp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name 18000 vnd"

@@ -62,7 +62,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         ActionViewFlipper();
         loadCategory();
         LoadData();
+        ProductByCategory();
 
+    }
+
+    private void ProductByCategory() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ProductByCategory.class);
+                intent.putExtra("ProductByCategory", loaiSanPham.get(position).getMaDM());
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+        });
     }
 
 

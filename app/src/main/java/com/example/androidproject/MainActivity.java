@@ -1,8 +1,14 @@
 package com.example.androidproject;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Gravity;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -10,9 +16,19 @@ import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.adapter.adapterLoaiSanPham;
+import com.example.adapter.adapterSanPham;
+import com.example.model.LoaiSanPham;
+import com.example.model.SanPham;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -22,25 +38,119 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewClickInterFace{
     Toolbar toolbar;
     ViewFlipper viewFlipper;
     RecyclerView recyclerViewNew;
     ListView listView;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+    ArrayList<SanPham> sp;
+    adapterSanPham adapterSanPham;
 
+    ArrayList<LoaiSanPham> loaiSanPham;
+    adapterLoaiSanPham adapterLoaiSanPham;
     //Connect to sql server
-    Connection connection;
+    Connection connect;
     String connectionResult = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AnhXa();
+        ActionBar();
         ActionViewFlipper();
+        loadCategory();
+        LoadData();
+        ProductByCategory();
 
     }
+
+    private void ProductByCategory() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ProductByCategory.class);
+                intent.putExtra("ProductByCategory", loaiSanPham.get(position).getMaDM());
+                startActivity(intent);
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+        });
+    }
+
+
+    private void loadCategory() {
+
+        loaiSanPham = new ArrayList<>();
+//        TextView textt;
+//        textt = findViewById(R.id.textt);
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionClass();
+            if(connect!= null)
+            {
+                String query ="select * from DanhMuc";
+                Statement st= connect.createStatement();
+                ResultSet rs= st.executeQuery(query);
+
+                while (rs.next()){
+//                    textt.setText(rs.getString(2));
+                    loaiSanPham.add(new LoaiSanPham( rs.getInt(1),rs.getString(2),rs.getInt(3)));
+                }
+            }
+            adapterLoaiSanPham = new adapterLoaiSanPham(MainActivity.this,R.layout.layout_toolbar,loaiSanPham);
+            listView.setAdapter(adapterLoaiSanPham);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    private void ActionBar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+    }
+
+    private void LoadData() {
+
+        sp = new ArrayList<>();
+//        TextView textt;
+//        textt = findViewById(R.id.textt);
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionClass();
+            if(connect!= null)
+            {
+                String query ="select * from SanPham";
+                Statement st= connect.createStatement();
+                ResultSet rs= st.executeQuery(query);
+
+                while (rs.next()){
+//                    textt.setText(rs.getString(2));
+                    sp.add(new SanPham(rs.getInt(1) , rs.getString(2), rs.getDouble(3)
+                            , rs.getString(4), rs.getString(5), rs.getString(6)
+                            ,rs.getInt(7),rs.getInt(8), rs.getInt(9)));
+                }
+            }
+            adapterSanPham = new adapterSanPham(MainActivity.this, sp,this);
+            LinearLayoutManager llm = new LinearLayoutManager(this);
+            llm.setOrientation(LinearLayoutManager.VERTICAL);
+            recyclerViewNew.setLayoutManager(llm);
+            recyclerViewNew.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+            recyclerViewNew.setAdapter(adapterSanPham);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 
 
     private void ActionViewFlipper() {
@@ -68,10 +178,17 @@ public class MainActivity extends AppCompatActivity {
         viewFlipper = findViewById(R.id.viewflipper);
         navigationView = findViewById(R.id.navigationview);
         drawerLayout = findViewById(R.id.drawerlayout);
-        recyclerViewNew=findViewById(R.id.recyviewNew);
+        recyclerViewNew=findViewById(R.id.rvcviewNew);
         listView = findViewById(R.id.listviewmanhinhchinh);
+
+
     }
 
 
-
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getApplicationContext(), MainChiTietSanPham.class);
+        intent.putExtra("ProductDetails", sp.get(position));
+        startActivity(intent);
+    }
 }

@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject">
         <activity
+            android:name=".MainDangKy"
+            android:exported="false" />
+        <activity
+            android:name=".MainDangNhap"
+            android:exported="false" />
+        <activity
             android:name=".ProductByCategory"
             android:exported="false" />
         <activity

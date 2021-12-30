@@ -152,7 +152,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
 
-
     private void ActionViewFlipper() {
         ArrayList<String> mangquangcao = new ArrayList<>();
         mangquangcao.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStHKxpunWSUMUehOTe0eP0RgQC3Apeyfm59g&usqp=CAU");
@@ -183,7 +182,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
 
     }
-
 
     @Override
     public void onItemClick(int position) {

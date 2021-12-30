@@ -25,6 +25,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trang Chủ"
+                        android:textSize="20dp"/>
+
+                    <ImageView
+                        android:id="@+id/imvProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_person_24"
+                        android:paddingRight="15dp"
+                        android:layout_alignParentEnd="true"
+                        />
+                </RelativeLayout>
+
             </androidx.appcompat.widget.Toolbar>
 
             <ViewFlipper

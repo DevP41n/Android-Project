@@ -1,6 +1,7 @@
 package com.example.androidproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.SharedPreferences.SessionManager;
 import com.example.adapter.adapterLoaiSanPham;
 import com.example.adapter.adapterSanPham;
 import com.example.model.LoaiSanPham;
@@ -45,14 +48,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     ListView listView;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+    ImageView imvProfile;
+
     ArrayList<SanPham> sp;
     adapterSanPham adapterSanPham;
-
     ArrayList<LoaiSanPham> loaiSanPham;
     adapterLoaiSanPham adapterLoaiSanPham;
+
     //Connect to sql server
     Connection connect;
     String connectionResult = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +70,29 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         loadCategory();
         LoadData();
         ProductByCategory();
+        AddEvents();
+    }
 
+
+    private void AddEvents() {
+        imvProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //lấy session
+                SessionManager sessionManager = new SessionManager(MainActivity.this);
+                int userID = sessionManager.getSession();
+                if(userID != -1)
+                {
+                    //Note: Test để check login : Thoát
+                    sessionManager.removeSession();
+                    Toast.makeText(getApplicationContext(), "Đã thoát!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(getApplicationContext(), MainDangNhap.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private void ProductByCategory() {
@@ -179,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         drawerLayout = findViewById(R.id.drawerlayout);
         recyclerViewNew=findViewById(R.id.rvcviewNew);
         listView = findViewById(R.id.listviewmanhinhchinh);
+        imvProfile = findViewById(R.id.imvProfile);
 
 
     }

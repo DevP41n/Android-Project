@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.SharedPreferences.SessionManager;
@@ -25,6 +26,7 @@ import java.sql.Statement;
 public class MainDangNhap extends AppCompatActivity {
 
     EditText txtUserName, txtPassword;
+    TextView txtSignUp;
     ImageView imvSignIn;
 
     //Connect to sql server
@@ -96,6 +98,15 @@ public class MainDangNhap extends AppCompatActivity {
 
             }
         });
+
+
+        txtSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainDangKy.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -103,5 +114,6 @@ public class MainDangNhap extends AppCompatActivity {
         txtUserName = findViewById(R.id.txtUserName);
         txtPassword = findViewById(R.id.txtPassword);
         imvSignIn = findViewById(R.id.imvSignIn);
+        txtSignUp = findViewById(R.id.txtSignUp);
     }
 }

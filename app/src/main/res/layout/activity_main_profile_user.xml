@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainProfileUser"
+    android:orientation="vertical"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        app:title="Tài khoản"
+        android:background="#D13E3E"
+        app:titleTextColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_person_24"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/txtProfile"
+            android:paddingLeft="15dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Thông tin tài khoản"
+            android:textSize="26sp"
+            android:layout_weight="8"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:layout_gravity="right"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="6.3dp"
+        android:background="#d5d5d5" />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_history_24"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/txtTransactionHistory"
+            android:paddingLeft="15dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Lịch sử giao dịch"
+            android:textSize="26sp"
+            android:layout_weight="8"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:layout_gravity="right"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="6.3dp"
+        android:background="#d5d5d5" />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_login_24"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/txtLogout"
+            android:paddingLeft="15dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Đăng xuất"
+            android:textSize="26sp"
+            android:layout_weight="8"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:layout_gravity="right"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

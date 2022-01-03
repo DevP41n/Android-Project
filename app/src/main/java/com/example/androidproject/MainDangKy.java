@@ -58,14 +58,15 @@ public class MainDangKy extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Toàn khoản hoặc email đã tồn tại!",Toast.LENGTH_SHORT).show();
                         }
                         else {
-                           String queryy = "INSERT INTO KhachHang (HoTen, Taikhoan, Matkhau, Email, DienthoaiKH) " +
+                           String querry = "INSERT INTO KhachHang (HoTen, Taikhoan, Matkhau, Email, DienthoaiKH) " +
                                     " VALUES ('" + hoten + "', '" + username +"', '" + password + "', '" + email + "', '"
                             + Phone +"')";
                             st = connect.createStatement();
-                            st.executeQuery(query);
+                            st.executeUpdate(querry);
                             Intent intent = new Intent(getApplicationContext(), MainDangNhap.class);
                             startActivity(intent);
                             Toast.makeText(getApplicationContext(), "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+
 
                         }
                     }

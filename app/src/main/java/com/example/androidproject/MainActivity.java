@@ -84,8 +84,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
                 if(userID != -1)
                 {
                     //Note: Test để check login : Thoát
-                    sessionManager.removeSession();
-                    Toast.makeText(getApplicationContext(), "Đã thoát!", Toast.LENGTH_SHORT).show();
+//                    sessionManager.removeSession();
+//                    Toast.makeText(getApplicationContext(), "Đã thoát!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), MainProfileUser.class);
+                    startActivity(intent);
                 }
                 else {
                     Intent intent = new Intent(getApplicationContext(), MainDangNhap.class);

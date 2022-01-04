@@ -17,12 +17,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.function.ToLongBiFunction;
 
 public class ProductByCategory extends AppCompatActivity {
 
     ListView lsvByCategory;
     ArrayList<SanPham> sp;
     adapterSpTheoDanhMuc adapter;
+
+    androidx.appcompat.widget.Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,8 @@ public class ProductByCategory extends AppCompatActivity {
     private void getData() {
         sp = new ArrayList<>();
         int MaDM = 0;
-        MaDM = getIntent().getIntExtra("ProductByCategory",-1);
-
+        LoaiSanPham loaiSanPham = (LoaiSanPham) getIntent().getSerializableExtra("ProductByCategory");
+        MaDM = loaiSanPham.getMaDM();
         try{
             ConnectionHelper connectionHelper = new ConnectionHelper();
             Connection connect = connectionHelper.connectionClass();
@@ -56,6 +59,8 @@ public class ProductByCategory extends AppCompatActivity {
             adapter = new adapterSpTheoDanhMuc(ProductByCategory.this, R.layout.activity_product_by_category, sp);
             lsvByCategory.setAdapter(adapter);
 
+            toolbar.setTitle(loaiSanPham.getTenDM());
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -66,5 +71,6 @@ public class ProductByCategory extends AppCompatActivity {
     private void linkViews() {
         lsvByCategory = findViewById(R.id.lsvByCategory);
 
+        toolbar = findViewById(R.id.toolbarproduct_by_category);
     }
 }

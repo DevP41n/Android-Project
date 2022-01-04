@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), ProductByCategory.class);
-                intent.putExtra("ProductByCategory", loaiSanPham.get(position).getMaDM());
+                intent.putExtra("ProductByCategory", loaiSanPham.get(position));
                 startActivity(intent);
                 drawerLayout.closeDrawer(GravityCompat.START);
             }

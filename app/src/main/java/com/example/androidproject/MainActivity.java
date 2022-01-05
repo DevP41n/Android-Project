@@ -171,9 +171,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
                 }
             }
             adapterSanPham = new adapterSanPham(MainActivity.this, sp,this);
-            LinearLayoutManager llm = new LinearLayoutManager(this);
-            llm.setOrientation(LinearLayoutManager.VERTICAL);
-            recyclerViewNew.setLayoutManager(llm);
+            recyclerViewNew.setHasFixedSize(true);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            recyclerViewNew.setLayoutManager(layoutManager);
             recyclerViewNew.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
             recyclerViewNew.setAdapter(adapterSanPham);
 

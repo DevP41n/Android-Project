@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.SharedPreferences.SessionManager;
 import com.example.model.KhachHang;
@@ -155,9 +156,15 @@ public class UserInfo extends AppCompatActivity {
                                     Statement st = connect.createStatement();
                                     st.executeUpdate(query);
                                 }
+                                dialog.dismiss();;
+                                loadDatas();
+                                Toast.makeText(getApplicationContext(),"Thay đổi thành công", Toast.LENGTH_SHORT ).show();
+                            }else{
+                                dialog.dismiss();;
+                                loadDatas();
+                                Toast.makeText(getApplicationContext(),"Thay đổi không thành công", Toast.LENGTH_SHORT ).show();
                             }
-                            dialog.dismiss();;
-                            loadDatas();
+
                         }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();

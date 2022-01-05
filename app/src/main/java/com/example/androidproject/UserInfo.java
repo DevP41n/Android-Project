@@ -3,10 +3,12 @@ package com.example.androidproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.SharedPreferences.SessionManager;
@@ -22,7 +24,7 @@ public class UserInfo extends AppCompatActivity {
 
     TextView txtHoTen, txtTenTaiKhoan, txtSoDienThoai, txtEmail;
 
-    ArrayList<KhachHang> listKH;
+    LinearLayout  txtChangePassword;
 
     //Connect to sql server
     Connection connect;
@@ -58,10 +60,17 @@ public class UserInfo extends AppCompatActivity {
                 openEditUserDialog(3);
             }
         });
+
+        txtChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ChangePassword.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadDatas() {
-        listKH = new ArrayList<>();
         SessionManager sessionManager = new SessionManager(UserInfo.this);
         int userID = sessionManager.getSession();
         try{
@@ -91,6 +100,7 @@ public class UserInfo extends AppCompatActivity {
         txtTenTaiKhoan = findViewById(R.id.txtTenTaiKhoan);
         txtEmail = findViewById(R.id.txtEmail);
         txtSoDienThoai = findViewById(R.id.txtSoDienThoai);
+        txtChangePassword = findViewById(R.id.txtChangePassword);
     }
 
     private void openEditUserDialog(int id) {

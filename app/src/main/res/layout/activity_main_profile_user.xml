@@ -30,7 +30,7 @@
             android:paddingLeft="15dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Thông tin tài khoản"
+            android:text="Thiết lập tài khoản"
             android:textSize="26sp"
             android:layout_weight="8"
             />

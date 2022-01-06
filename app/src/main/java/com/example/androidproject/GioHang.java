@@ -61,23 +61,23 @@ public class GioHang extends AppCompatActivity {
     private void loadData() {
         double Tongtien = 0;
         cartList = SessionCart.readListFromPref(this);
-        adapterCart = new adapterCart(GioHang.this, R.layout.activity_gio_hang, (ArrayList<Cart>) cartList);
-        if(cartList.size() >0)
+        //check cartList : Nếu null thì k cho load ở trong if (lỗi)
+        if (cartList != null)
         {
-            txtNotifi.setText("");
-        }
-        else
-        {
-            txtNotifi.setText("Giỏ hàng trống");
-        }
-        lvCart.setAdapter(adapterCart);
+            adapterCart = new adapterCart(GioHang.this, R.layout.activity_gio_hang, (ArrayList<Cart>) cartList);
+            if (cartList.size() > 0) {
+                txtNotifi.setText("");
+            } else {
+                txtNotifi.setText("Giỏ hàng trống");
+            }
+            lvCart.setAdapter(adapterCart);
 
-        for (int i = 0; i<cartList.size(); i++)
-        {
-            Tongtien += (cartList.get(i).getTien() * cartList.get(i).getSoLuong());
+            for (int i = 0; i < cartList.size(); i++) {
+                Tongtien += (cartList.get(i).getTien() * cartList.get(i).getSoLuong());
+            }
+            DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+            txtTotalPrice.setText(decimalFormat.format(Tongtien));
         }
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        txtTotalPrice.setText(decimalFormat.format(Tongtien));
     }
 
     private void linkViews() {

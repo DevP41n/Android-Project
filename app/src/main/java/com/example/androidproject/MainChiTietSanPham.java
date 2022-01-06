@@ -8,12 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.SharedPreferences.SessionCart;
+import com.example.model.Cart;
 import com.example.model.SanPham;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainChiTietSanPham extends AppCompatActivity {
 
@@ -22,6 +27,20 @@ public class MainChiTietSanPham extends AppCompatActivity {
     Button btnAddCart;
 
     ElegantNumberButton enbSoLuong;
+
+    String tenSP = "";
+    String hinhanh ="";
+    double gia = 0;
+    String chitiet = "";
+    int id = 0;
+    int soluong =0;
+    int soluongmua;
+    double tongtien;
+
+    Cart cart;
+
+    private List<Cart> cartList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,24 +53,38 @@ public class MainChiTietSanPham extends AppCompatActivity {
     }
 
     private void addEvents() {
+        cartList = SessionCart.readListFromPref(this);
+        if(cartList == null)
+            cartList = new ArrayList<>();
+
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test = "";
-
-                test = enbSoLuong.getNumber();
-                txtgiaSP.setText(test);
+                soluongmua = Integer.parseInt((enbSoLuong.getNumber()));
+                boolean check = false;
+                for (int i = 0; i< cartList.size() ; i++)
+                {
+                    if(cartList.get(i).getID() == id)
+                    {
+                        check = true;
+                        cartList.get(i).setSoLuong(cartList.get(i).getSoLuong() + soluongmua);
+                        SessionCart.WriteListInPref(getApplicationContext(), cartList);
+                        Toast.makeText(getApplicationContext(),"Thêm vào giỏ hàng thành công!",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if(check == false)
+                {
+//                tongtien = soluongmua * gia;
+                    cart = new Cart(id, tenSP, soluongmua, soluong, gia, hinhanh);
+                    cartList.add(cart);
+                    SessionCart.WriteListInPref(getApplicationContext(), cartList);
+                    Toast.makeText(getApplicationContext(),"Thêm vào giỏ hàng thành công!",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
     private void getData() {
-        String tenSP = "";
-        String hinhanh ="";
-        double gia = 0;
-        String chitiet = "";
-        int id = 0;
-        int soluong =0;
 
         SanPham sanPham = (SanPham) getIntent().getSerializableExtra("ProductDetails");
         id = sanPham.getMaSP();

@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     ListView listView;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-    ImageView imvProfile;
+    ImageView imvProfile, imvCart;
 
     ArrayList<SanPham> sp;
     adapterSanPham adapterSanPham;
@@ -73,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         AddEvents();
     }
 
+    @Override
+    protected void onResume() {
+        LoadData();
+        loadCategory();
+        super.onResume();
+    }
 
     private void AddEvents() {
         imvProfile.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +99,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
                     Intent intent = new Intent(getApplicationContext(), MainDangNhap.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        imvCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GioHang.class);
+                startActivity(intent);
             }
         });
     }
@@ -211,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         recyclerViewNew=findViewById(R.id.rvcviewNew);
         listView = findViewById(R.id.listviewmanhinhchinh);
         imvProfile = findViewById(R.id.imvProfile);
+        imvCart = findViewById(R.id.imvCart);
 
 
     }

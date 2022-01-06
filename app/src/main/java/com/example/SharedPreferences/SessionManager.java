@@ -3,11 +3,16 @@ package com.example.SharedPreferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.model.Cart;
+
+import java.util.ArrayList;
+
 public class SessionManager {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     String SHARE_PREF_NAME = "session";
     String SESSION_KEY = "session_user";
+
 
     public SessionManager(Context context)
     {
@@ -30,8 +35,9 @@ public class SessionManager {
     public void removeSession()
     {
         //logout
-//        editor.putInt(SESSION_KEY,-1).commit();
-        editor.clear();
-        editor.commit();
+        editor.putInt(SESSION_KEY,-1).commit();
+//        editor.clear();
+//        editor.commit();
     }
+
 }

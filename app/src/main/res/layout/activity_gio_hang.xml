@@ -23,14 +23,14 @@
         android:layout_height="match_parent">
       <TextView
           android:layout_gravity="center"
-          android:id="@+id/txtthongbao"
+          android:id="@+id/txtNotifi"
           android:text="Giỏ hàng còn trống"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content">
 
       </TextView>
       <ListView
-          android:id="@+id/lvgiohang"
+          android:id="@+id/lvCart"
           android:layout_width="match_parent"
           android:layout_height="match_parent">
 
@@ -66,6 +66,7 @@
           android:layout_width="0dp"
           android:layout_height="match_parent">
         <TextView
+            android:id="@+id/txtTotalPrice"
             android:text="Giá trị"
             android:textColor="#D81A1A"
             android:textSize="30sp"

@@ -15,11 +15,22 @@
         android:id="@+id/txtinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name - 18000VND"
+        android:text="Name"
+        android:textStyle="bold"
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:textSize="16sp"
-        android:textColor="#009688"/>
+        android:textColor="#000000"/>
+    <TextView
+        android:id="@+id/txtPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18000VND"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textColor="#E10000"/>
 
 </LinearLayout>

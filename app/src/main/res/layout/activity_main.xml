@@ -35,6 +35,15 @@
                         android:textSize="20dp"/>
 
                     <ImageView
+                        android:id="@+id/imvCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_shopping_cart_24"
+                        android:layout_alignParentEnd="true"
+                        android:paddingRight="60dp"
+                        />
+
+                    <ImageView
                         android:id="@+id/imvProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

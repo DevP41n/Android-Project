@@ -20,6 +20,7 @@ import com.example.androidproject.RecyclerViewClickInterFace;
 import com.example.model.SanPham;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class adapterSanPham extends RecyclerView.Adapter<adapterSanPham.ViewHolder>{
@@ -46,7 +47,10 @@ public class adapterSanPham extends RecyclerView.Adapter<adapterSanPham.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Picasso.get().load(sanPhams.get(position).getAnh()).placeholder(R.drawable.ic_baseline_cloud_download_24)
                 .error(R.drawable.ic_baseline_image_not_supported_24).into(holder.invThumb);
-        holder.txtinfor.setText(sanPhams.get(position).getTenSP()+"_"+sanPhams.get(position).getGia());
+        holder.txtinfor.setText(sanPhams.get(position).getTenSP());
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        holder.txtPrice.setText(decimalFormat.format(sanPhams.get(position).getGia())+ " VNĐ");
+
     }
 
     @Override
@@ -56,11 +60,12 @@ public class adapterSanPham extends RecyclerView.Adapter<adapterSanPham.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder  {
         ImageView invThumb;
-        TextView txtinfor;
+        TextView txtinfor, txtPrice;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             invThumb =itemView.findViewById(R.id.invThumble);
             txtinfor=itemView.findViewById(R.id.txtinfo);
+            txtPrice =itemView.findViewById(R.id.txtPrice);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

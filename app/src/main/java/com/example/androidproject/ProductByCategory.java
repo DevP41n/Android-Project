@@ -2,7 +2,10 @@ package com.example.androidproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toolbar;
 
@@ -34,6 +37,18 @@ public class ProductByCategory extends AppCompatActivity {
 
         linkViews();
         getData();
+        addEvents();
+    }
+
+    private void addEvents() {
+        lsvByCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), MainChiTietSanPham.class);
+                intent.putExtra("ProductDetails", sp.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
     private void getData() {

@@ -42,13 +42,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewClickInterFace{
-    Toolbar toolbar;
     ViewFlipper viewFlipper;
     RecyclerView recyclerViewNew;
     ListView listView;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-    ImageView imvProfile, imvCart;
+    ImageView imvProfile, imvCart, imvMenu;
 
     ArrayList<SanPham> sp;
     adapterSanPham adapterSanPham;
@@ -59,13 +58,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     Connection connect;
     String connectionResult = "";
 
+    private static int check = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AnhXa();
-        ActionBar();
         ActionViewFlipper();
         loadCategory();
         LoadData();
@@ -107,6 +106,19 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), GioHang.class);
                 startActivity(intent);
+            }
+        });
+        imvMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(check == 1){
+                    drawerLayout.openDrawer(GravityCompat.START);
+                    check = 2;
+                }
+                else if(check == 2 ){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    check = 1;
+                }
             }
         });
     }
@@ -151,17 +163,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         }
     }
 
-    private void ActionBar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
-    }
+//    private void ActionBar() {
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        toolbar.setNavigationIcon(R.drawable.ic_baseline_menu_24);
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                drawerLayout.openDrawer(GravityCompat.START);
+//            }
+//        });
+//    }
 
     private void LoadData() {
 
@@ -218,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
     private void AnhXa(){
-        toolbar = findViewById(R.id.toolbarmanhinhchinh);
+        imvMenu = findViewById(R.id.imvMenu);
         viewFlipper = findViewById(R.id.viewflipper);
         navigationView = findViewById(R.id.navigationview);
         drawerLayout = findViewById(R.id.drawerlayout);

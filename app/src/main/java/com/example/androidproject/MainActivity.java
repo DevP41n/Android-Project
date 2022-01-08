@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             connect = connectionHelper.connectionClass();
             if(connect!= null)
             {
-                String query ="select * from SanPham";
+                String query ="SELECT TOP 8 * FROM SanPham ORDER BY MaSP DESC";
                 Statement st= connect.createStatement();
                 ResultSet rs= st.executeQuery(query);
 
@@ -199,9 +199,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             }
             adapterSanPham = new adapterSanPham(MainActivity.this, sp,this);
             recyclerViewNew.setHasFixedSize(true);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
             recyclerViewNew.setLayoutManager(layoutManager);
-            recyclerViewNew.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+            //
+            DividerItemDecoration decoration = new DividerItemDecoration(this, layoutManager.getOrientation());
+            recyclerViewNew.addItemDecoration(decoration);
+//            recyclerViewNew.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
             recyclerViewNew.setAdapter(adapterSanPham);
 
         } catch (SQLException throwables) {

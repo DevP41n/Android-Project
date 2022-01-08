@@ -35,6 +35,20 @@ public class GioHang extends AppCompatActivity {
         loadData();
     }
 
+    public void Minus(int i)
+    {
+        cartList.get(i).setSoLuong(cartList.get(i).getSoLuong() - 1);
+        SessionCart.WriteListInPref(getApplicationContext(), cartList);
+        loadData();
+    }
+
+    public void Plus(int i)
+    {
+        cartList.get(i).setSoLuong(cartList.get(i).getSoLuong() + 1);
+        SessionCart.WriteListInPref(getApplicationContext(), cartList);
+        loadData();
+    }
+
     public void OpenDeleteDialog(int i)
     {
         Button btnOK, btnCancel;
@@ -52,6 +66,13 @@ public class GioHang extends AppCompatActivity {
                 dialog.dismiss();
                 loadData();
                 Toast.makeText(getApplicationContext(),"Đã xóa khỏi giỏ hàng!",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
 

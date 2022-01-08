@@ -14,6 +14,7 @@ import com.example.androidproject.R;
 import com.example.model.SanPham;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class adapterSpTheoDanhMuc extends BaseAdapter {
@@ -43,7 +44,7 @@ public class adapterSpTheoDanhMuc extends BaseAdapter {
 
     public class ViewHolder{
         ImageView imvAnhSp;
-        TextView txtThongTinSp;
+        TextView txtThongTinSp, txtPrice;
     }
     @Override
     public View getView(int position, View view, ViewGroup parent) {
@@ -54,12 +55,15 @@ public class adapterSpTheoDanhMuc extends BaseAdapter {
             view = inflater.inflate(R.layout.list_item_by_category,null);
             viewHolder.imvAnhSp = view.findViewById(R.id.imvAnhSp);
             viewHolder.txtThongTinSp = view.findViewById(R.id.txtThongTinSp);
+            viewHolder.txtPrice = view.findViewById(R.id.txtPrice);
             view.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) view.getTag();
         }
         SanPham sanPham = (SanPham) getItem(position);
-        viewHolder.txtThongTinSp.setText(sanPham.getTenSP()+"_"+sanPham.getGia());
+        viewHolder.txtThongTinSp.setText(sanPham.getTenSP());
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        viewHolder.txtPrice.setText(decimalFormat.format(sanPham.getGia()) + " VNĐ");
         Picasso.get().load(sanPham.getAnh()).placeholder(R.drawable.ic_baseline_cloud_download_24)
                         .error(R.drawable.ic_baseline_image_not_supported_24).into(viewHolder.imvAnhSp);
         return view;

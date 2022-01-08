@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
                 intent.putExtra("ProductByCategory", loaiSanPham.get(position));
                 startActivity(intent);
                 drawerLayout.closeDrawer(GravityCompat.START);
+                check = 1;
             }
         });
     }

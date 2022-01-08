@@ -57,28 +57,31 @@ public class MainChiTietSanPham extends AppCompatActivity {
         if(cartList == null)
             cartList = new ArrayList<>();
 
+        String check = btnAddCart.getText().toString();
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                soluongmua = Integer.parseInt((enbSoLuong.getNumber()));
-                boolean check = false;
-                for (int i = 0; i< cartList.size() ; i++)
-                {
-                    if(cartList.get(i).getID() == id)
-                    {
-                        check = true;
-                        cartList.get(i).setSoLuong(cartList.get(i).getSoLuong() + soluongmua);
+                if (!check.equals("HẾT HÀNG")) {
+                    soluongmua = Integer.parseInt((enbSoLuong.getNumber()));
+                    boolean check = false;
+                    for (int i = 0; i < cartList.size(); i++) {
+                        if (cartList.get(i).getID() == id) {
+                            check = true;
+                            cartList.get(i).setSoLuong(cartList.get(i).getSoLuong() + soluongmua);
+                            SessionCart.WriteListInPref(getApplicationContext(), cartList);
+                            Toast.makeText(getApplicationContext(), "Thêm vào giỏ hàng thành công!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if (check == false) {
+//                tongtien = soluongmua * gia;
+                        cart = new Cart(id, tenSP, soluongmua, soluong, gia, hinhanh);
+                        cartList.add(cart);
                         SessionCart.WriteListInPref(getApplicationContext(), cartList);
-                        Toast.makeText(getApplicationContext(),"Thêm vào giỏ hàng thành công!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Thêm vào giỏ hàng thành công!", Toast.LENGTH_SHORT).show();
                     }
                 }
-                if(check == false)
-                {
-//                tongtien = soluongmua * gia;
-                    cart = new Cart(id, tenSP, soluongmua, soluong, gia, hinhanh);
-                    cartList.add(cart);
-                    SessionCart.WriteListInPref(getApplicationContext(), cartList);
-                    Toast.makeText(getApplicationContext(),"Thêm vào giỏ hàng thành công!",Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(getApplicationContext(),"Sản phẩm đã hết hàng!",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -99,6 +102,12 @@ public class MainChiTietSanPham extends AppCompatActivity {
         txtchitietSP.setText(chitiet);
         Picasso.get().load(hinhanh).into(imvchitietSP);
         enbSoLuong.setRange(1,soluong);
+
+        if(soluong == 0)
+        {
+            enbSoLuong.setVisibility(View.INVISIBLE);
+            btnAddCart.setText("HẾT HÀNG");
+        }
 
     }
 

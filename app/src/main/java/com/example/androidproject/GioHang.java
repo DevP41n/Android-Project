@@ -64,67 +64,8 @@ public class GioHang extends AppCompatActivity {
         btnPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault());
-                String currentDateAndTime = dateFormat.format(new Date());
-
-                SessionManager sessionManager = new SessionManager(GioHang.this);
-                int userID = sessionManager.getSession();
-                String TenKH = "Tiến";
-                String DiachiKH = "TP.HCM";
-                String Email = "Tien@gmail.com";
-                String SDT = "0123456789";
-
-                int MaDH = 0;
-                int MaSP = 0;
-                int Soluongmua = 0;
-                double Dongiamua = 0;
-                double tongtien = 0;
-
-
-                try{
-                    ConnectionHelper connectionHelper = new ConnectionHelper();
-                    connect = connectionHelper.connectionClass();
-                    if(connect!= null) {
-                        String query = "INSERT INTO DonDatHang (Dathanhtoan, Tinhtranggiaohang, Ngaydat, MaKH, TenKH, SDTKH, DiachiKH, Email) " +
-                                " VALUES (0, 0, '" + currentDateAndTime + "'," + userID+  " , N'" + TenKH +"', '" + SDT + "', N'" + DiachiKH + "', '"
-                                + Email +"')";
-                        Statement st = connect.createStatement();
-                        st.executeUpdate(query);
-
-                        query = "select * from DonDatHang where Ngaydat = '" + currentDateAndTime + "'"
-                                + "and MaKH =" + userID;
-
-                        ResultSet rsc = st.executeQuery(query);
-                        if(rsc.next())
-                        {
-                            MaDH = rsc.getInt(1);
-                        }
-
-                        if(cartList !=null) {
-                            for (int i = 0; i < cartList.size(); i++) {
-                                MaSP = cartList.get(i).getID();
-                                Soluongmua = cartList.get(i).getSoLuong();
-                                Dongiamua = cartList.get(i).getTien();
-                                tongtien = Soluongmua * Dongiamua;
-                                query = "INSERT INTO ChiTietDonHang (MaDonHang, MaSP, Soluong, Dongia, TongTien) " +
-                                        " VALUES (" + MaDH + ", " + MaSP + ", " + Soluongmua + ", " + Dongiamua + ", " + tongtien + ")";
-                                st = connect.createStatement();
-                                st.executeUpdate(query);
-                            }
-                            cartList.removeAll(cartList);
-                            SessionCart.WriteListInPref(getApplicationContext(), cartList);
-                            Toast.makeText(getApplicationContext(), "Thành công!", Toast.LENGTH_SHORT).show();
-                            loadData();
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), "Lỗi!", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-
+                Intent intent = new Intent(getApplicationContext(), Checkout.class);
+                startActivity(intent);
             }
         });
     }

@@ -19,11 +19,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
+        android:layout_marginBottom="25dp"
         android:id="@+id/imvchitietSP"
         android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="10dp"
-        android:layout_width="200dp"
-        android:layout_height="200dp">
+        android:layout_marginTop="35dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp">
     </ImageView>
 
     <LinearLayout
@@ -66,8 +67,10 @@
             />
 
         <Button
+            android:layout_marginTop="10dp"
             android:id="@+id/btnAddCart"
-            android:layout_width="match_parent"
+            android:layout_width="170dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:backgroundTint="#72635B5B"
             android:text="Thêm giỏ hàng"

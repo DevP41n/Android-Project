@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,9 +45,11 @@ public class adapterCart extends BaseAdapter {
     }
 
     public class ViewHolder{
-        public TextView txtNameSP, txtPrice;
+        public TextView txtNameSP, txtPrice, txtQuantity;
         public ImageView imvcart, imvDelete;
-        public ElegantNumberButton enbSLCart;
+
+//        public ElegantNumberButton enbSLCart;
+        public Button btnPlus, btnMinus;
     }
 
     @Override
@@ -60,7 +63,10 @@ public class adapterCart extends BaseAdapter {
             viewHolder.txtNameSP = view.findViewById(R.id.txtNameSP);
             viewHolder.txtPrice = view.findViewById(R.id.txtPrice);
             viewHolder.imvcart = view.findViewById(R.id.imvcart);
-            viewHolder.enbSLCart = view.findViewById(R.id.enbSLCart);
+//            viewHolder.enbSLCart = (ElegantNumberButton) view.findViewById(R.id.enbSLCart);
+            viewHolder.txtQuantity = view.findViewById(R.id.txtQuantity);
+            viewHolder.btnMinus = view.findViewById(R.id.btnMinus);
+            viewHolder.btnPlus = view.findViewById(R.id.btnPlus);
             viewHolder.imvDelete = view.findViewById(R.id.imvDelete);
             view.setTag(viewHolder);
         }
@@ -71,12 +77,23 @@ public class adapterCart extends BaseAdapter {
         Cart cart = (Cart) getItem(position);
         viewHolder.txtNameSP.setText(cart.getTenSp());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        viewHolder.txtPrice.setText(decimalFormat.format(cart.getTien())+ " VNĐ");
+        viewHolder.txtPrice.setText(decimalFormat.format(cart.getTien()) + " VNĐ");
         Picasso.get().load(cart.getHinh()).placeholder(R.drawable.ic_baseline_cloud_download_24)
                 .error(R.drawable.ic_baseline_image_not_supported_24).into(viewHolder.imvcart);
 
-        viewHolder.enbSLCart.setNumber(String.valueOf(cart.getSoLuong()), false);
-        viewHolder.enbSLCart.setRange(cart.getSoLuong(),cart.getSoluongton());
+        viewHolder.txtQuantity.setText(String.valueOf(cart.getSoLuong()));
+//        viewHolder.enbSLCart.setNumber(String.valueOf(cart.getSoLuong()), false);
+//        viewHolder.enbSLCart.setRange(1,cart.getSoluongton());
+
+        int quantity = Integer.parseInt(viewHolder.txtQuantity.getText().toString());
+        if(quantity == 1)
+        {
+            viewHolder.btnMinus.setVisibility(View.INVISIBLE);
+        }
+        else if(quantity == cart.getSoluongton())
+        {
+            viewHolder.btnPlus.setVisibility(View.INVISIBLE);
+        }
 
         viewHolder.imvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +101,25 @@ public class adapterCart extends BaseAdapter {
                 context.OpenDeleteDialog(position);
             }
         });
+
+        viewHolder.btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(quantity >1) {
+                    context.Minus(position );
+                }
+            }
+        });
+
+        viewHolder.btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(quantity < cart.getSoluongton()) {
+                    context.Plus(position);
+                }
+            }
+        });
+
 
 
         return view;

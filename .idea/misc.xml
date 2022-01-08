@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Project/app/src/main/res/drawable/header_background.xml" value="0.1" />
         <entry key="..\:/Android Project/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.303125" />
+        <entry key="..\:/Android Project/app/src/main/res/drawable/search_icon.xml" value="0.3828125" />
+        <entry key="..\:/Android Project/app/src/main/res/drawable/white_rectangle_background.xml" value="0.3828125" />
         <entry key="..\:/Android Project/app/src/main/res/layout/activity_main.xml" value="0.36102564102564105" />
         <entry key="..\:/Android Project/app/src/main/res/layout/activity_main_chi_tiet_san_pham.xml" value="0.2869791666666667" />
         <entry key="..\:/Android Project/app/src/main/res/layout/activity_main_dang_ky.xml" value="0.2869791666666667" />

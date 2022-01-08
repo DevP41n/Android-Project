@@ -77,7 +77,7 @@ public class adapterCart extends BaseAdapter {
         Cart cart = (Cart) getItem(position);
         viewHolder.txtNameSP.setText(cart.getTenSp());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        viewHolder.txtPrice.setText(decimalFormat.format(cart.getTien())+ " VNĐ");
+        viewHolder.txtPrice.setText(decimalFormat.format(cart.getTien()) + " VNĐ");
         Picasso.get().load(cart.getHinh()).placeholder(R.drawable.ic_baseline_cloud_download_24)
                 .error(R.drawable.ic_baseline_image_not_supported_24).into(viewHolder.imvcart);
 

@@ -44,6 +44,13 @@ public class MainProfileUser extends AppCompatActivity {
 
             }
         });
+        txtTransactionHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LichSuDonDatHang.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

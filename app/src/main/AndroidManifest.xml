@@ -15,6 +15,12 @@
         android:theme="@style/Theme.AndroidProject"
         tools:replace="android:theme">
         <activity
+            android:name=".LichSuDonDatHang"
+            android:exported="false" />
+        <activity
+            android:name=".SearchProduct"
+            android:exported="false" />
+        <activity
             android:name=".Checkout"
             android:exported="false" />
         <activity

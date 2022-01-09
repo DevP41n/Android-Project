@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.SharedPreferences.SessionManager;
 import com.example.adapter.adapterLoaiSanPham;
 import com.example.adapter.adapterSanPham;
+import com.example.adapter.adapterTimKiemSanPham;
 import com.example.model.LoaiSanPham;
 import com.example.model.SanPham;
 import com.google.android.material.navigation.NavigationView;
@@ -47,12 +49,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     ListView listView;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-    ImageView imvProfile, imvCart, imvMenu;
+    ImageView imvProfile, imvCart, imvMenu, imvSearch;
+    EditText edtSearch;
 
     ArrayList<SanPham> sp;
     adapterSanPham adapterSanPham;
     ArrayList<LoaiSanPham> loaiSanPham;
     adapterLoaiSanPham adapterLoaiSanPham;
+    adapterTimKiemSanPham adapterTimKiemSanPham;
 
     //Connect to sql server
     Connection connect;
@@ -119,6 +123,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
                     drawerLayout.closeDrawer(GravityCompat.START);
                     check = 1;
                 }
+            }
+        });
+
+        imvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String key = edtSearch.getText().toString();
+                Intent intent = new Intent(getApplicationContext(), SearchProduct.class);
+                intent.putExtra("KeySearch", key);
+                startActivity(intent);
             }
         });
     }
@@ -242,8 +256,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         listView = findViewById(R.id.listviewmanhinhchinh);
         imvProfile = findViewById(R.id.imvProfile);
         imvCart = findViewById(R.id.imvCart);
-
-
+        edtSearch = findViewById(R.id.edtSearch);
+        imvSearch = findViewById(R.id.imvSearch);
     }
 
     @Override

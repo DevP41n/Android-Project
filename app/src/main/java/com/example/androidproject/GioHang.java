@@ -51,6 +51,8 @@ public class GioHang extends AppCompatActivity {
     }
 
     private void addEvents() {
+        SessionManager sessionManager = new SessionManager(GioHang.this);
+        int userID = sessionManager.getSession();
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +66,14 @@ public class GioHang extends AppCompatActivity {
         btnPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Checkout.class);
+                Intent intent;
+                if(userID != -1) {
+                    intent = new Intent(getApplicationContext(), Checkout.class);
+                }
+                else {
+                    intent = new Intent(getApplicationContext(), MainDangNhap.class);
+                    Toast.makeText(getApplicationContext(), "Bạn chưa đăng nhập!", Toast.LENGTH_SHORT).show();
+                }
                 startActivity(intent);
             }
         });

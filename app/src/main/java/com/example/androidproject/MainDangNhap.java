@@ -79,8 +79,9 @@ public class MainDangNhap extends AppCompatActivity {
                         {
                             //lưu session khi login thành công
                             sessionManager.saveSession(rs.getInt(1));
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
+//                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                            startActivity(intent);
+                            finish();
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
                         }

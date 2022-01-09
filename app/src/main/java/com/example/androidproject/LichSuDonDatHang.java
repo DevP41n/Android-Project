@@ -2,15 +2,18 @@ package com.example.androidproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.SharedPreferences.SessionManager;
 import com.example.adapter.adapterLichSuDonDatHang;
-import com.example.adapter.adapterLoaiSanPham;
 import com.example.model.DonDatHang;
-import com.example.model.LoaiSanPham;
+import com.example.model.TranHisDetailsModel;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,6 +37,18 @@ public class LichSuDonDatHang extends AppCompatActivity {
 
         linkViews();
         LoadData();
+        addEvents();
+    }
+
+    private void addEvents() {
+        lsvDonDatHang.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), TranHisDetails.class);
+                intent.putExtra("MADH", arrayList.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
     private void LoadData() {

@@ -5,22 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.androidproject.R;
-import com.example.model.SanPham;
-import com.example.model.TranHisDetails;
-import com.squareup.picasso.Picasso;
+import com.example.model.TranHisDetailsModel;
 
-import org.w3c.dom.Text;
-
+import java.sql.Connection;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class adapterTranHDetails extends BaseAdapter {
     Context context;
-    ArrayList<TranHisDetails> tranHisDetails;
+    ArrayList<TranHisDetailsModel> tranHisDetails;
+
+    public adapterTranHDetails(Context context, int activity_tran_his_details, ArrayList<TranHisDetailsModel> tranHisDetails) {
+        this.context = context;
+        this.tranHisDetails = tranHisDetails;
+    }
 
     @Override
     public int getCount() {
@@ -43,18 +44,22 @@ public class adapterTranHDetails extends BaseAdapter {
         if (viewHolder == null){
             viewHolder = new adapterTranHDetails.ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.activity_tran_his_details,null);
-            viewHolder.txtInfo = view.findViewById(R.id.txtInfo);
+            view = inflater.inflate(R.layout.tran_h_details_cus,null);
+            viewHolder.txtDetails = view.findViewById(R.id.txtDetails);
             view.setTag(viewHolder);
         }else {
-            viewHolder = (adapterTranHDetails.ViewHolder) view.getTag();
+            viewHolder = (ViewHolder) view.getTag();
         }
-        TranHisDetails tranHisDetails = (TranHisDetails) getItem(position);
-        viewHolder.txtInfo.setText(tranHisDetails.getTenSP() + "\n" + tranHisDetails.getDongia() + " X " + tranHisDetails.getSoLuong());
+
+        TranHisDetailsModel tranHisDetailsModel = (TranHisDetailsModel) getItem(position);
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String dongia = decimalFormat.format(tranHisDetailsModel.getDongia());
+
+        viewHolder.txtDetails.setText(tranHisDetailsModel.getTenSP() + "\n" +  dongia + "VNĐ X " + tranHisDetailsModel.getSoLuong());
         return view;
     }
 
     public class ViewHolder{
-        TextView txtInfo;
+        TextView txtDetails;
     }
 }

@@ -2,20 +2,21 @@ package com.example.model;
 
 import net.sourceforge.jtds.jdbc.DateTime;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
-public class DonDatHang {
-    int MaDonHang;
-    Boolean Dathanhtoan;
-    Boolean Tinhtranggiaohang;
-    Date Ngaydat;
-    Time Giodat;
-    int MaKH;
-    String TenKH;
-    String SDTKH;
-    String DiachiKH;
-    String Email;
+public class DonDatHang implements Serializable {
+    private int MaDonHang;
+    private Boolean Dathanhtoan;
+    private  Boolean Tinhtranggiaohang;
+    private Date Ngaydat;
+    private Time Giodat;
+    private int MaKH;
+    private String TenKH;
+    private String SDTKH;
+    private String DiachiKH;
+    private String Email;
 
     public DonDatHang(int maDonHang, Boolean dathanhtoan, Boolean tinhtranggiaohang, Date ngaydat, Time giodat, int maKH, String tenKH, String SDTKH, String diachiKH, String email) {
         MaDonHang = maDonHang;

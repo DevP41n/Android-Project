@@ -1,6 +1,8 @@
 package com.example.model;
 
-public class TranHisDetails {
+import java.io.Serializable;
+
+public class TranHisDetailsModel  {
     private int MaDH;
     private int MaSP;
     private int SoLuong;
@@ -8,8 +10,7 @@ public class TranHisDetails {
     private double TongTien;
     private String TenSP;
 
-
-    public TranHisDetails(int maDH, int maSP, int soLuong, double dongia, double tongTien, String tenSP) {
+    public TranHisDetailsModel(int maDH, int maSP, int soLuong, double dongia, double tongTien, String tenSP) {
         MaDH = maDH;
         MaSP = maSP;
         SoLuong = soLuong;

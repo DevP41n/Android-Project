@@ -5,10 +5,22 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/txtDetails"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="SP"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/txtPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SPdasdasdasdd"
         android:textSize="20sp"
         />
 

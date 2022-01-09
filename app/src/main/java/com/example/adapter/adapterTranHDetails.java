@@ -46,6 +46,7 @@ public class adapterTranHDetails extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.tran_h_details_cus,null);
             viewHolder.txtDetails = view.findViewById(R.id.txtDetails);
+            viewHolder.txtPrice = view.findViewById(R.id.txtPrice);
             view.setTag(viewHolder);
         }else {
             viewHolder = (ViewHolder) view.getTag();
@@ -55,11 +56,12 @@ public class adapterTranHDetails extends BaseAdapter {
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         String dongia = decimalFormat.format(tranHisDetailsModel.getDongia());
 
-        viewHolder.txtDetails.setText(tranHisDetailsModel.getTenSP() + "\n" +  dongia + "VNĐ X " + tranHisDetailsModel.getSoLuong());
+        viewHolder.txtDetails.setText(tranHisDetailsModel.getTenSP() );
+        viewHolder.txtPrice.setText(dongia + "VNĐ X " + tranHisDetailsModel.getSoLuong());
         return view;
     }
 
     public class ViewHolder{
-        TextView txtDetails;
+        TextView txtDetails, txtPrice;
     }
 }

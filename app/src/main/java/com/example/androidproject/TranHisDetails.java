@@ -58,16 +58,18 @@ public class TranHisDetails extends AppCompatActivity {
                 String queryy="";
 
                 while (rs.next()){
-
-//                    MaSP = String.valueOf(rs.getInt(2));
-//                    queryy = "select * from SanPham where MaSP =" + MaSP;
-//                    rsc = st.executeQuery(queryy);
-//                    if (rsc.next())
-//                    {
-//                       tenSP = rsc.getString(2);
-//                    }
                     tongtien += rs.getDouble(5);
                     arraytranHis.add(new TranHisDetailsModel(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), tenSP));
+                }
+                for(int i = 0; i< arraytranHis.size(); i++)
+                {
+                    MaSP = String.valueOf(arraytranHis.get(i).getMaSP());
+                    queryy = "select * from SanPham where MaSP =" + MaSP;
+                    rsc = st.executeQuery(queryy);
+                    while (rsc.next())
+                    {
+                       arraytranHis.get(i).setTenSP(rsc.getString(2));
+                    }
                 }
 
                 tranHDetails = new adapterTranHDetails(TranHisDetails.this, R.layout.activity_tran_his_details, arraytranHis);
@@ -77,10 +79,10 @@ public class TranHisDetails extends AppCompatActivity {
                 rsc = st.executeQuery(query);
                 if(rsc.next())
                 {
-                    txtTen.setText(rsc.getString(7));
-                    txtDiaChi.setText(rsc.getString(9));
-                    txtSDT.setText(rsc.getString(8));
-                    txtEmail.setText(rsc.getString(10));
+                    txtTen.setText("Tên: " + rsc.getString(7));
+                    txtDiaChi.setText("Địa chỉ: " + rsc.getString(9));
+                    txtSDT.setText("Số điện thoại: " + rsc.getString(8));
+                    txtEmail.setText("Email: " + rsc.getString(10));
                 }
                 DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
                 txtTongTien.setText("Tổng tiền: " + decimalFormat.format(tongtien) + " VNĐ");

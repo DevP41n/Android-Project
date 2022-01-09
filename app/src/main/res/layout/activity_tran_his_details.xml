@@ -14,6 +14,7 @@
         android:layout_height="?attr/actionBarSize"/>
 
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/txtTen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
         />
 
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/txtDiaChi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +36,7 @@
         />
 
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/txtSDT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,6 +47,7 @@
         />
 
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/txtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,6 +58,7 @@
         />
 
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/txtTongTien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,6 +66,15 @@
         android:textSize="20dp"
         android:layout_marginBottom="5dp"
         android:textStyle="bold"
+        />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dánh sách sản phẩm đã đặt:"
+        android:textSize="20dp"
+        android:layout_marginBottom="5dp"
         />
 
     <ListView

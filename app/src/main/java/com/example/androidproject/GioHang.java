@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class GioHang extends AppCompatActivity {
 
     ListView lvCart;
     TextView txtTotalPrice, txtNotifi;
+    ImageView imvBack;
 
     Button btnContinue, btnPayment;
 
@@ -75,6 +77,13 @@ public class GioHang extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Bạn chưa đăng nhập!", Toast.LENGTH_SHORT).show();
                 }
                 startActivity(intent);
+            }
+        });
+
+        imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -146,6 +155,7 @@ public class GioHang extends AppCompatActivity {
     }
 
     private void linkViews() {
+        imvBack = findViewById(R.id.imvBack);
         lvCart = findViewById(R.id.lvCart);
         txtTotalPrice = findViewById(R.id.txtTotalPrice);
         txtNotifi = findViewById(R.id.txtNotifi);

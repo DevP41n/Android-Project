@@ -7,11 +7,28 @@
     tools:context=".ProductByCategory"
     android:orientation="vertical">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarproduct_by_category"
-        app:title=""
-        android:background="#0859DF"
+        android:background="@color/purple_500"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imvBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24"/>
+        <TextView
+            android:id="@+id/txtCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Danh mục sản phẩm"
+            android:textSize="23sp"
+            android:paddingLeft="10dp"/>
+        <ImageView
+            android:id="@+id/imvCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_shopping_cart_24"
+            android:layout_gravity="right"
+            android:paddingRight="15dp"/>
 
     </androidx.appcompat.widget.Toolbar>
     <ListView

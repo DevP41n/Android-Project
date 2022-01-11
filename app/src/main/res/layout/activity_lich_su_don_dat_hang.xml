@@ -8,14 +8,24 @@
     android:orientation="vertical"
     >
     <androidx.appcompat.widget.Toolbar
-        app:title="Lịch sử đơn đặt hàng"
-        android:background="#D13E3E"
-        app:titleTextColor="@color/white"
+        android:background="@color/purple_500"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imvBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lịch sử đơn đặt hàng"
+            android:textSize="23sp"
+            android:paddingLeft="10dp"/>
 
     </androidx.appcompat.widget.Toolbar>
+
+
     <TextView
         android:padding="10dp"
         android:id="@+id/txtDonDathang"

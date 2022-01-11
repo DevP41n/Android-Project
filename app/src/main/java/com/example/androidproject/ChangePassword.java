@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.SharedPreferences.SessionManager;
@@ -20,6 +21,7 @@ public class ChangePassword extends AppCompatActivity {
     EditText edtOldPassword, edtNewPassword, edtRetype;
 
     Button btnConfirm, btnCancel;
+    ImageView imvBack;
 
     //Connect to sql server
     Connection connect;
@@ -87,6 +89,12 @@ public class ChangePassword extends AppCompatActivity {
                 finish();
             }
         });
+        imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -97,6 +105,7 @@ public class ChangePassword extends AppCompatActivity {
 
         btnConfirm = findViewById(R.id.btnConfirm);
         btnCancel = findViewById(R.id.btnCancel);
+        imvBack = findViewById(R.id.imvBack);
 
     }
 }

@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.adapter.adapterLoaiSanPham;
@@ -28,7 +30,8 @@ public class ProductByCategory extends AppCompatActivity {
     ArrayList<SanPham> sp;
     adapterSpTheoDanhMuc adapter;
 
-    androidx.appcompat.widget.Toolbar toolbar;
+    TextView txtCategory;
+    ImageView imvCart, imvBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,20 @@ public class ProductByCategory extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), MainChiTietSanPham.class);
                 intent.putExtra("ProductDetails", sp.get(position));
+                startActivity(intent);
+            }
+        });
+        imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        imvCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GioHang.class);
                 startActivity(intent);
             }
         });
@@ -74,7 +91,7 @@ public class ProductByCategory extends AppCompatActivity {
             adapter = new adapterSpTheoDanhMuc(ProductByCategory.this, R.layout.activity_product_by_category, sp);
             lsvByCategory.setAdapter(adapter);
 
-            toolbar.setTitle(loaiSanPham.getTenDM());
+            txtCategory.setText(loaiSanPham.getTenDM());
 
 
         } catch (SQLException throwables) {
@@ -86,6 +103,8 @@ public class ProductByCategory extends AppCompatActivity {
     private void linkViews() {
         lsvByCategory = findViewById(R.id.lsvByCategory);
 
-        toolbar = findViewById(R.id.toolbarproduct_by_category);
+        txtCategory = findViewById(R.id.txtCategory);
+        imvBack = findViewById(R.id.imvBack);
+        imvCart = findViewById(R.id.imvCart);
     }
 }

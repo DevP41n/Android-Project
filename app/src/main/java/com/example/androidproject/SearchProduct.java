@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,6 +24,8 @@ public class SearchProduct extends AppCompatActivity {
 
     TextView txtResult;
     ListView lsvSearch;
+
+    ImageView imvBack, imvCart;
 
     adapterTimKiemSanPham adapterTimKiemSanPham;
     ArrayList<SanPham> arraylist;
@@ -46,6 +49,21 @@ public class SearchProduct extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), MainChiTietSanPham.class);
                 intent.putExtra("ProductDetails", arraylist.get(position));
+                startActivity(intent);
+            }
+        });
+
+        imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        imvCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GioHang.class);
                 startActivity(intent);
             }
         });
@@ -82,5 +100,7 @@ public class SearchProduct extends AppCompatActivity {
     private void linkViews() {
         txtResult = findViewById(R.id.txtResult);
         lsvSearch = findViewById(R.id.lsvSearch);
+        imvCart = findViewById(R.id.imvCart);
+        imvBack = findViewById(R.id.imvBack);
     }
 }

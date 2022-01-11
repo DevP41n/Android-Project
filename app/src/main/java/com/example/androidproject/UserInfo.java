@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +26,8 @@ public class UserInfo extends AppCompatActivity {
 
     TextView txtHoTen, txtTenTaiKhoan, txtSoDienThoai, txtEmail;
 
-    LinearLayout  txtChangePassword;
+    LinearLayout  txtChangePassword, lnName, lnPhone, lnEmail;
+    ImageView imvBack;
 
     //Connect to sql server
     Connection connect;
@@ -43,19 +45,19 @@ public class UserInfo extends AppCompatActivity {
     }
 
     private void addEvents() {
-        txtHoTen.setOnClickListener(new View.OnClickListener() {
+        lnName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openEditUserDialog(1);
             }
         });
-        txtSoDienThoai.setOnClickListener(new View.OnClickListener() {
+        lnPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openEditUserDialog(2);
             }
         });
-        txtEmail.setOnClickListener(new View.OnClickListener() {
+        lnEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openEditUserDialog(3);
@@ -67,6 +69,12 @@ public class UserInfo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ChangePassword.class);
                 startActivity(intent);
+            }
+        });
+        imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -102,6 +110,12 @@ public class UserInfo extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail);
         txtSoDienThoai = findViewById(R.id.txtSoDienThoai);
         txtChangePassword = findViewById(R.id.txtChangePassword);
+        imvBack = findViewById(R.id.imvBack);
+
+        lnName = findViewById(R.id.lnName);
+        lnEmail = findViewById(R.id.lnEmail);
+        lnPhone = findViewById(R.id.lnPhone);
+
     }
 
     private void openEditUserDialog(int id) {

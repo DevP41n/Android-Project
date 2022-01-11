@@ -11,8 +11,19 @@
     android:background="@color/purple_500"
     android:id="@+id/toobargiohang"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:title="Giỏ Hàng">
+    android:layout_height="wrap_content">
+  <ImageView
+      android:id="@+id/imvBack"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_baseline_keyboard_backspace_24"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Giỏ hàng"
+      android:textSize="20sp"
+      android:paddingLeft="10dp"/>
+
 </androidx.appcompat.widget.Toolbar>
   <LinearLayout
       android:layout_weight="7"

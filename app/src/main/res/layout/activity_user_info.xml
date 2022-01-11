@@ -8,13 +8,25 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        app:title="Thông tin tài khoản"
-        android:background="#D13E3E"
-        app:titleTextColor="@color/white"
+        android:background="@color/purple_500"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        />
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imvBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thông tin tài khoản"
+            android:textSize="23sp"
+            android:paddingLeft="10dp"/>
+
+
+    </androidx.appcompat.widget.Toolbar>
     <LinearLayout
+        android:id="@+id/lnName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="10"
@@ -48,6 +60,7 @@
         android:background="#d5d5d5" />
 
     <LinearLayout
+        android:id="@+id/lnUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="10"
@@ -80,6 +93,7 @@
         android:background="#d5d5d5" />
 
     <LinearLayout
+        android:id="@+id/lnPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="10"
@@ -115,6 +129,7 @@
         android:background="#d5d5d5" />
 
     <LinearLayout
+        android:id="@+id/lnEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="10"

@@ -3,6 +3,7 @@ package com.example.androidproject;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,9 +23,10 @@ import java.util.List;
 
 public class MainChiTietSanPham extends AppCompatActivity {
 
-    ImageView imvchitietSP;
+    ImageView imvchitietSP, imvBack, imvCart;
     TextView txttenSP, txtgiaSP, txtchitietSP;
     Button btnAddCart;
+
 
     ElegantNumberButton enbSoLuong;
 
@@ -85,6 +87,21 @@ public class MainChiTietSanPham extends AppCompatActivity {
                 }
             }
         });
+
+        imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        imvCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GioHang.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getData() {
@@ -117,6 +134,9 @@ public class MainChiTietSanPham extends AppCompatActivity {
         txtgiaSP = findViewById(R.id.txtgiaSP);
         txtchitietSP = findViewById(R.id.txtchitietSP);
         btnAddCart = findViewById(R.id.btnAddCart);
+
+        imvCart = findViewById(R.id.imvCart);
+        imvBack = findViewById(R.id.imvBack);
 
         enbSoLuong = findViewById(R.id.enbSoLuong);
     }

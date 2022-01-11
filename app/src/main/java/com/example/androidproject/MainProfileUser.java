@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.example.SharedPreferences.SessionManager;
 public class MainProfileUser extends AppCompatActivity {
 
     TextView txtProfile, txtTransactionHistory, txtLogout;
+    ImageView imvBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,12 @@ public class MainProfileUser extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 
@@ -58,5 +66,6 @@ public class MainProfileUser extends AppCompatActivity {
         txtProfile = findViewById(R.id.txtProfile);
         txtTransactionHistory = findViewById(R.id.txtTransactionHistory);
         txtLogout = findViewById(R.id.txtLogout);
+        imvBack = findViewById(R.id.imvBack);
     }
 }

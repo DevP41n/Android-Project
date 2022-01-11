@@ -31,8 +31,30 @@
             android:paddingRight="15dp"/>
 
     </androidx.appcompat.widget.Toolbar>
-    <ListView
-        android:id="@+id/lsvByCategory"
+
+    <LinearLayout
+        android:layout_weight="7"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/txtNoti"
+                android:text="Hiện tại chưa có sản phẩm nào"
+                android:textSize="23dp"
+                android:textColor="#000000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <ListView
+                android:id="@+id/lsvByCategory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
+        </FrameLayout>
+    </LinearLayout>
+
 </LinearLayout>

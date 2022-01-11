@@ -30,7 +30,7 @@ public class ProductByCategory extends AppCompatActivity {
     ArrayList<SanPham> sp;
     adapterSpTheoDanhMuc adapter;
 
-    TextView txtCategory;
+    TextView txtCategory, txtNoti;
     ImageView imvCart, imvBack;
 
     @Override
@@ -88,6 +88,12 @@ public class ProductByCategory extends AppCompatActivity {
                             ,rs.getInt(7),rs.getInt(8), rs.getInt(9)));
                 }
             }
+
+            if(sp.size() != 0)
+            {
+                txtNoti.setVisibility(View.INVISIBLE);
+            }
+
             adapter = new adapterSpTheoDanhMuc(ProductByCategory.this, R.layout.activity_product_by_category, sp);
             lsvByCategory.setAdapter(adapter);
 
@@ -106,5 +112,6 @@ public class ProductByCategory extends AppCompatActivity {
         txtCategory = findViewById(R.id.txtCategory);
         imvBack = findViewById(R.id.imvBack);
         imvCart = findViewById(R.id.imvCart);
+        txtNoti = findViewById(R.id.txtNoti);
     }
 }

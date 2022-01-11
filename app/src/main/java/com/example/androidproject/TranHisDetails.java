@@ -2,12 +2,17 @@ package com.example.androidproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.adapter.adapterTranHDetails;
 import com.example.model.DonDatHang;
+import com.example.model.SanPham;
 import com.example.model.TranHisDetailsModel;
 
 import java.sql.Connection;
@@ -20,6 +25,7 @@ import java.util.ArrayList;
 public class TranHisDetails extends AppCompatActivity {
 
     TextView txtTen, txtSDT, txtDiaChi, txtEmail, txtTongTien;
+    ImageView imvBack;
 
     ListView lvTranHDetails;
     adapterTranHDetails tranHDetails;
@@ -36,6 +42,48 @@ public class TranHisDetails extends AppCompatActivity {
 
         linkViews();
         loadData();
+
+        adEvents();
+    }
+
+    private void adEvents() {
+        lvTranHDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String MaSP = String.valueOf(arraytranHis.get(position).getMaSP());
+                SanPham sp = null;
+                try{
+                    ConnectionHelper connectionHelper = new ConnectionHelper();
+                    connect = connectionHelper.connectionClass();
+                    if(connect!= null)
+                    {
+                        String query ="SELECT * FROM SanPham WHERE MaSP = " + MaSP;
+                        Statement st= connect.createStatement();
+                        ResultSet rs= st.executeQuery(query);
+
+                        if (rs.next()){
+                            sp = new SanPham(rs.getInt(1) , rs.getString(2), rs.getDouble(3)
+                                    , rs.getString(4), rs.getString(5), rs.getString(6)
+                                    ,rs.getInt(7),rs.getInt(8), rs.getInt(9));
+                        }
+                        if(sp != null) {
+                            Intent intent = new Intent(getApplicationContext(), MainChiTietSanPham.class);
+                            intent.putExtra("ProductDetails", sp);
+                            startActivity(intent);
+                        }
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        });
+
+        imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void loadData() {
@@ -103,5 +151,6 @@ public class TranHisDetails extends AppCompatActivity {
         txtTongTien = findViewById(R.id.txtTongTien);
 
         lvTranHDetails = findViewById(R.id.lvTranHDetails);
+        imvBack = findViewById(R.id.imvBack);
     }
 }

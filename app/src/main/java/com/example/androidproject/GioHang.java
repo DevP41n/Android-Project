@@ -1,11 +1,16 @@
 package com.example.androidproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.SharedPreferences.SessionCart;
 import com.example.SharedPreferences.SessionManager;
 import com.example.adapter.adapterCart;
+import com.example.adapter.adapterSanPham;
 import com.example.model.Cart;
+import com.example.model.SanPham;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -86,6 +91,39 @@ public class GioHang extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void productDetails (int i)
+    {
+        String MaSP = String.valueOf(cartList.get(i).getID());
+        SanPham sp = null;
+//        TextView textt;
+//        textt = findViewById(R.id.textt);
+        try{
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            connect = connectionHelper.connectionClass();
+            if(connect!= null)
+            {
+                String query ="SELECT * FROM SanPham WHERE MaSP = " + MaSP;
+                Statement st= connect.createStatement();
+                ResultSet rs= st.executeQuery(query);
+
+                if (rs.next()){
+//                    textt.setText(rs.getString(2));
+                    sp = new SanPham(rs.getInt(1) , rs.getString(2), rs.getDouble(3)
+                            , rs.getString(4), rs.getString(5), rs.getString(6)
+                            ,rs.getInt(7),rs.getInt(8), rs.getInt(9));
+                }
+                if(sp != null) {
+                    Intent intent = new Intent(getApplicationContext(), MainChiTietSanPham.class);
+                    intent.putExtra("ProductDetails", sp);
+                    startActivity(intent);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 
     public void Minus(int i)

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.SharedPreferences.SessionCart;
@@ -27,6 +28,7 @@ public class Checkout extends AppCompatActivity {
     EditText edtName, edtEmail, edtAdress, edtPhone;
 
     Button btnCheckout, btnBack;
+    ImageView imvBack;
 
     Connection connect;
     String connectionResult = "";
@@ -118,6 +120,20 @@ public class Checkout extends AppCompatActivity {
 
             }
         });
+
+        imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void linkViews() {
@@ -128,5 +144,6 @@ public class Checkout extends AppCompatActivity {
 
         btnBack = findViewById(R.id.btnBack);
         btnCheckout = findViewById(R.id.btnCheckout);
+        imvBack = findViewById(R.id.imvBack);
     }
 }

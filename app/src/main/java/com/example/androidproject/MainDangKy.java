@@ -63,8 +63,9 @@ public class MainDangKy extends AppCompatActivity {
                             + Phone +"')";
                             st = connect.createStatement();
                             st.executeUpdate(querry);
-                            Intent intent = new Intent(getApplicationContext(), MainDangNhap.class);
-                            startActivity(intent);
+//                            Intent intent = new Intent(getApplicationContext(), MainDangNhap.class);
+//                            startActivity(intent);
+                            finish();
                             Toast.makeText(getApplicationContext(), "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
 
 

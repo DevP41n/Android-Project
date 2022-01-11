@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class SearchProduct extends AppCompatActivity {
 
-    TextView txtResult;
+    TextView txtResult, txtNoti;
     ListView lsvSearch;
 
     ImageView imvBack, imvCart;
@@ -90,6 +90,12 @@ public class SearchProduct extends AppCompatActivity {
             }
             adapterTimKiemSanPham = new adapterTimKiemSanPham(SearchProduct.this, R.layout.activity_product_by_category, arraylist);
             lsvSearch.setAdapter(adapterTimKiemSanPham);
+            if(arraylist.size() != 0)
+            {
+                txtNoti.setVisibility(View.INVISIBLE);
+            }
+
+            txtResult.setText("Kết tìm kiếm với từ khóa: '" + key + "'");
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -102,5 +108,6 @@ public class SearchProduct extends AppCompatActivity {
         lsvSearch = findViewById(R.id.lsvSearch);
         imvCart = findViewById(R.id.imvCart);
         imvBack = findViewById(R.id.imvBack);
+        txtNoti = findViewById(R.id.txtNoti);
     }
 }

@@ -120,6 +120,20 @@ public class adapterCart extends BaseAdapter {
             }
         });
 
+        viewHolder.txtNameSP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.productDetails(position);
+            }
+        });
+
+        viewHolder.imvcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.productDetails(position);
+            }
+        });
+
 
 
         return view;

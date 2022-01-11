@@ -19,7 +19,7 @@ public class ConnectionHelper {
     {
         //Copy mấy cái ip của tụi bay bỏ dô đây, vì cái ide này nó k get đc cái ip localhost của pc
 //                ip = "192.168.1.8"; // IP máy của Tân
-        ip = "192.168.1.10"; // IP máy của Tiến
+        ip = "192.168.1.14"; // IP máy của Tiến
         //        ip="172.20.10.12";// IP máy của Chương
         database = "TechShop";
         username = "sa";

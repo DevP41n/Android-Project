@@ -57,7 +57,7 @@ public class adapterTranHDetails extends BaseAdapter {
         String dongia = decimalFormat.format(tranHisDetailsModel.getDongia());
 
         viewHolder.txtDetails.setText(tranHisDetailsModel.getTenSP() );
-        viewHolder.txtPrice.setText(dongia + "VNĐ X " + tranHisDetailsModel.getSoLuong());
+        viewHolder.txtPrice.setText(dongia + " VNĐ X " + tranHisDetailsModel.getSoLuong());
         return view;
     }
 

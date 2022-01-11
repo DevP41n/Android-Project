@@ -28,15 +28,19 @@
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_change_password.xml" value="0.264" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_checkout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_gio_hang.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_main.xml" value="0.39100346020761245" />
+        <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_lich_su_don_dat_hang.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_main_chi_tiet_san_pham.xml" value="0.21574074074074073" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_main_dang_ky.xml" value="0.20925925925925926" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_main_dang_nhap.xml" value="0.21574074074074073" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_main_profile_user.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_product_by_category.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_search_product.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_tran_his_details.xml" value="0.22407407407407406" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/activity_user_info.xml" value="0.4" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/custom_cart.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/custom_delete_dialog.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/item_list_lsgd.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/list_item.xml" value="0.21296296296296297" />
         <entry key="..\:/Users/VIET TIEN/Desktop/Android Project/app/src/main/res/layout/list_item_by_category.xml" value="0.25416666666666665" />
       </map>

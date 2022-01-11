@@ -213,12 +213,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             }
             adapterSanPham = new adapterSanPham(MainActivity.this, sp,this);
             recyclerViewNew.setHasFixedSize(true);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             recyclerViewNew.setLayoutManager(layoutManager);
             //
             DividerItemDecoration decoration = new DividerItemDecoration(this, layoutManager.getOrientation());
             recyclerViewNew.addItemDecoration(decoration);
-//            recyclerViewNew.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
+            recyclerViewNew.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
             recyclerViewNew.setAdapter(adapterSanPham);
 
         } catch (SQLException throwables) {
@@ -229,10 +229,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     private void ActionViewFlipper() {
         ArrayList<String> mangquangcao = new ArrayList<>();
-        mangquangcao.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStHKxpunWSUMUehOTe0eP0RgQC3Apeyfm59g&usqp=CAU");
-        mangquangcao.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9DwlmvWZ6kywSL77GMcHGb2BoIy2IWFoXFQ&usqp=CAU");
-        mangquangcao.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6nBd6bszec1rvHGgzqAFTyJHlMQS3SuH2HA&usqp=CAU");
-        mangquangcao.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9P4-kKHKpCxpstTnohuIvrlVUARmoNZZi8A&usqp=CAU");
+        mangquangcao.add("https://file.hstatic.net/1000026716/collection/1371x436_1ded6464f79a4ec9adff306657b34423.jpg");
+        mangquangcao.add("https://theme.hstatic.net/1000026716/1000440777/14/slideshow_7.jpg?v=23390");
+        mangquangcao.add("https://theme.hstatic.net/1000026716/1000440777/14/slideshow_3.jpg?v=23390");
+        mangquangcao.add("https://theme.hstatic.net/1000026716/1000440777/14/slideshow_12.jpg?v=23390");
         for(int i =0; i <mangquangcao.size(); i++){
             ImageView imageView = new ImageView(getApplicationContext());
             Picasso.get().load(mangquangcao.get(i)).into(imageView);

@@ -13,6 +13,7 @@ import com.example.model.DonDatHang;
 import com.example.model.SanPham;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -62,7 +63,8 @@ public class adapterLichSuDonDatHang extends BaseAdapter {
 
         DonDatHang donDatHang = (DonDatHang) getItem(position);
 
-        viewHolder.txtDonDathang.setText("Thời gian đặt: " + donDatHang.getNgaydat() + " - " + donDatHang.getGiodat());
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        viewHolder.txtDonDathang.setText("Thời gian đặt: " + df.format(donDatHang.getNgaydat()) + " - " + donDatHang.getGiodat());
 
         return view;
     }

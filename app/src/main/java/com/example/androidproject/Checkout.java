@@ -14,6 +14,8 @@ import com.example.SharedPreferences.SessionCart;
 import com.example.SharedPreferences.SessionManager;
 import com.example.model.Cart;
 
+import net.sourceforge.jtds.jdbc.DateTime;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,7 +51,7 @@ public class Checkout extends AppCompatActivity {
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss MM/dd/yyyy", Locale.getDefault());
                 String currentDateAndTime = dateFormat.format(new Date());
 
                 SessionManager sessionManager = new SessionManager(Checkout.this);
